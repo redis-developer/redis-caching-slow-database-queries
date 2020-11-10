@@ -10,12 +10,19 @@ const sql = `INSERT INTO courses (
               course_number,
               course_name)
               VALUES(?, ?, ?, ?, ?)`
-
+const create_table = `
+            CREATE TABLE courses(
+              title text, 
+              description text, 
+              index_description text, 
+              course_number text, 
+              course_name text, 
+              course_id INTEGER PRIMARY KEY
+            )`
 db.serialize(() => {
   db
     .run('DROP TABLE IF EXISTS courses')
-    .run('CREATE TABLE courses(title text, description text, index_description text, course_number text, course_name text, course_id INTEGER PRIMARY KEY)')
-
+    .run(create_table)
     courses.forEach( course => 
       db.run(sql, Object.values(course), (err, succ) => {
       return err 
