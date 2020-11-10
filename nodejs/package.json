@@ -2,11 +2,6 @@
   "name": "caching-js",
   "version": "1.0.0",
   "description": "A simple caching example using SQLite and Redis",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/redislabs-training/caching.git"
@@ -18,8 +13,10 @@
   },
   "homepage": "https://github.com/redislabs-training/caching#readme",
   "dependencies": {
+    "axios": "^0.21.0",
     "express": "^4.17.1",
     "ioredis": "^4.19.2",
     "sqlite3": "^5.0.0"
-  }
+  },
+  "private": true
 }

@@ -24,10 +24,12 @@ node db/seed.js
 Run the server
 
 ```
-npm run start
+npm start
 ```
 
 ## Running the example
+
+TODO: include docker command to pull & run redis
 
 Navigate to `localhost:3000/1` in your browser.
 
