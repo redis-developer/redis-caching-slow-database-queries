@@ -5,5 +5,6 @@ module.exports = {
         'host': process.env.redis_host || '127.0.0.1'
     },
     'server_port': process.env.server_port || 3000,
-    'sqlite_database': process.env.sqlite_db || './db/sample.db'
+    'sqlite_database': process.env.sqlite_db || './db/sample.db',
+    'weather_csv': process.env.weather_csv || './db/weather.csv'
 }
