@@ -1,11 +1,11 @@
-module.exports = {
-    'key' : process.env.weather_api_key, // TODO: remove before deploy 
+export default {
+    'key' : process.env.WEATHER_API_KEY,
     'endpoint': (city) => `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=`,
     'redis' : {
-        'port': process.env.redis_port || 6379,
-        'host': process.env.redis_host || '127.0.0.1'
+        'port': process.env.REDIS_PORT || 6379,
+        'host': process.env.REDIS_HOST || '127.0.0.1'
     },
-    'server_port': process.env.server_port || 3000,
-    'sqlite_database': process.env.sqlite_db || './db/weather.db',
-    'weather_csv': process.env.weather_csv || './db/weather.csv'
+    'server_port': process.env.SERVER_PORT || 3000,
+    'sqlite_database': process.env.SQLITE_DB || './db/weather.db',
+    'weather_csv': process.env.WEATHER_CSV || './db/weather.csv'
 }

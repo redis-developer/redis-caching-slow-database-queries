@@ -1,11 +1,10 @@
-const constants = require('./constants.js')
-const sqlite3 = require('sqlite3').verbose()
-const db = new sqlite3.Database(constants.sqlite_database)
-const Redis = require('ioredis')
-const redis = new Redis(constants.redis)
-const axios = require('axios')
+import constants from './constants.js'
+import Redis from 'ioredis'
+import axios from 'axios'
 
-const cityEndpoint = (city) => api_endpoint = `${constants.endpoint(city)}${constants.key}`
+const redis = new Redis(constants.redis)
+
+const cityEndpoint = (city) => `${constants.endpoint(city)}${constants.key}`
 
 const keyCheck = () =>  {
   if (!process.env.WEATHER_API_KEY) {
@@ -24,6 +23,7 @@ const quit = () => {
 
 /* Returns a JSON object of the current weather conditions for a given city */
 const getWeather = async (city) => {
+  /* Check if WEATHER_API_KEY exists in Environment Variables */
   keyCheck()
 
   /* Check Redis for cached entry first */
@@ -31,31 +31,29 @@ const getWeather = async (city) => {
     .then( async entry => {
       /* If Redis returns a cache hit, */
       if (entry) {
-        cached_entry = JSON.parse(entry)
-        cached_entry.source = 'cache'
+        entry = JSON.parse(entry)
+
         /* return the entry */
-        return cached_entry
+        return {...entry, 'source': 'cache'}
       }
 
       /* If Redis returns a cache miss, fetch and return data from the API */
       return await axios.get(cityEndpoint(city))
         .then(response => {
 
-          /* Add the entry to Redis for next time */
-          redis.set(`weather:${city}`, 
-          JSON.stringify(response.data),
-          /* Set an expiry of one hour so weather data is timely */
-          'EX', 3600)
-          response.data.source = 'API'
-          return response.data
+          /* Add the entry to Redis for next time and set an expiry of one hour so weather data is timely */
+          redis.set(`weather:${city}`, JSON.stringify(response.data), 'EX', 3600)
+
+          /* Return the database entry */
+          return {...response.data, 'source': 'API'}
         })
     })
 }
 
 const city = 'Oakland'
-let t0 = new Date().getTime()
+const t0 = new Date().getTime()
 getWeather(city).then(weather => {
-  let t1 = new Date().getTime()
+  const t1 = new Date().getTime()
   weather.responseTime = `${t1-t0}ms`
   console.log(weather)
   quit()

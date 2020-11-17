@@ -14,11 +14,11 @@
   "homepage": "https://github.com/redislabs-training/caching#readme",
   "dependencies": {
     "axios": "^0.21.0",
-    "csv-parse": "^4.14.0",
-    "express": "^4.17.1",
+    "bluebird": "^3.7.2",
     "ioredis": "^4.19.2",
-    "nodemon": "^2.0.6",
+    "sqlite": "^4.0.17",
     "sqlite3": "^5.0.0"
   },
-  "private": true
+  "private": true,
+  "type": "module"
 }
