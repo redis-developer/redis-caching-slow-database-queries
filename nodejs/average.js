@@ -1,15 +1,9 @@
 import constants from './constants.js'
-import sqlite3 from 'sqlite3'
 import { Database } from 'sqlite'
 import Redis from 'ioredis'
 
-const db = new Database({
-  filename: constants.sqlite_database,
-  driver: sqlite3.Database
-})
-
+const db = new Database(constants.sqlite_database)
 const redis = new Redis(constants.redis)
-
 const TMAX_average_sql = `SELECT AVG(TMAX) FROM weather`
 
 /* Returns average of maximum recorded daily temperatures from database. */
@@ -29,7 +23,6 @@ const getAverage = async () => {
     /* If Redis returns a chache miss, fetch the entry from the database */
     await db.open()
     return await db.get(TMAX_average_sql, [])
-      // .then(db_entry => JSON.parse(db_entry))
       .then(db_entry => {
       
       /* Add the entry we pulled from the database to the cache */
