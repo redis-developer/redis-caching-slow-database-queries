@@ -17,6 +17,7 @@
     "csv-parse": "^4.14.0",
     "express": "^4.17.1",
     "ioredis": "^4.19.2",
+    "nodemon": "^2.0.6",
     "sqlite3": "^5.0.0"
   },
   "private": true
