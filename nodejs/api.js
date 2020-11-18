@@ -22,13 +22,13 @@ const quit = () => {
 }
 
 /* Returns a JSON object of the current weather conditions for a given city */
-const getWeather = async (city) => {
+const getWeather = (city) => {
   /* Check if WEATHER_API_KEY exists in Environment Variables */
   keyCheck()
 
   /* Check Redis for cached entry first */
-  return await redis.get(`weather:${city}`)
-    .then( async entry => {
+  return redis.get(`weather:${city}`)
+    .then( entry => {
       /* If Redis returns a cache hit, */
       if (entry) {
         entry = JSON.parse(entry)
@@ -38,7 +38,7 @@ const getWeather = async (city) => {
       }
 
       /* If Redis returns a cache miss, fetch and return data from the API */
-      return await axios.get(cityEndpoint(city))
+      return axios.get(cityEndpoint(city))
         .then(response => {
 
           /* Add the entry to Redis for next time and set an expiry of one hour so weather data is timely */

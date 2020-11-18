@@ -14,7 +14,6 @@
   "homepage": "https://github.com/redislabs-training/caching#readme",
   "dependencies": {
     "axios": "^0.21.0",
-    "bluebird": "^3.7.2",
     "ioredis": "^4.19.2",
     "sqlite": "^4.0.17",
     "sqlite3": "^5.0.0"
