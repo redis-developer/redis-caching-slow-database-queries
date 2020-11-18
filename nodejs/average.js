@@ -20,7 +20,7 @@ const getAverage = async () => {
       return {...entry, 'source' : 'cache'}
     }
 
-    /* If Redis returns a chache miss, fetch the entry from the database */
+    /* If Redis returns a cache miss, fetch the entry from the database */
     await db.open()
     return await db.get(TMAX_average_sql, [])
       .then(db_entry => {
