@@ -8,7 +8,7 @@ const keyCheck = () =>  {
   if (!process.env.WEATHER_API_KEY) {
     console.error(`No Weather API key detected as an ENVIRONMENT VARIABLE.
     Head to https://openweathermap.org/appid to get a free API key.
-    Then set an environment variable in your command line:
+    Then store the key in an environment variable from the command line:
     $ export WEATHER_API_KEY=<your api key>`)
     quit()
   }

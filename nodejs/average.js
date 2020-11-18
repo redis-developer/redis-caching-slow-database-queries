@@ -7,8 +7,8 @@ const redis = new Redis(constants.redis)
 
 const TMAX_average_sql = `SELECT AVG(TMAX) FROM weather`
 
-/* Returns average of maximum recorded daily temperatures from database. */
-const getAverage = () => {
+/* Returns average of maximum recorded daily temperature from the database. */
+const getAverage = async () => {
 
   /* Check Redis for cached entry first */
   // TODO: include key Oakland, time frame start, end, math

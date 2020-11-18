@@ -96,9 +96,9 @@ $ node average.js
 
 ### `api.js`
 
-This file contains logic to demonstrate caching entries from a weather service API.  You will need a free API key of your own to run this demonstration. Keys can be obtained by following the instructions at the [Open WeatherMap API](https://openweathermap.org/api) site.  The `getWeather()` function retrieves a JSON object containing real-time meteoroligical information on a given city. This example uses Oakland as a parameter, but any city can be substituted.
+This file contains logic to demonstrate caching entries from a weather service API.  You will need a free API key of your own to run this demonstration. You can get your own API key by following the [instructions at the Open WeatherMap API](https://openweathermap.org/api) site.  The `getWeather()` function retrieves a JSON object containing real-time meteorological information on a given city. This example uses Oakland as a parameter, but you can use whichever city you like.
 
-Ensure Redis is running, then run the `api.js` file once.  Since there is no cache entry, the codebase will retrieve the data from the Open Weather Map API.
+Ensure Redis is running, then run the `api.js` file once.  Since there is no cache entry, the code will retrieve the data from the Open Weather Map API.
 
 ```bash
 $ node api.js
@@ -118,7 +118,7 @@ $ node api.js
 }
 ```
 
-The code will have placed a copy of the entry in the Redis cache, so the next function execution should return data from the cache. Note that the cached entry has a `TTL` (Time To Live) of one hour. Weather can change frequently, so an hour should provide a reasonable approximation of the current conditions. After an hour, the cache entry will be deleted and a new cache entry will need to be stored. This ensures fresh, relevant data.
+The code will have placed a copy of the entry in the Redis cache, so the next function call will return data from the cache. Note that the cached entry has a `TTL` (Time To Live) of one hour. Weather can change frequently, so an hour should provide a reasonable approximation of the current conditions. After an hour, the cache entry will be removed automatically, and a new cache entry will need to be stored. This ensures fresh, relevant data.
 
 ```bash
 $ node api.js
