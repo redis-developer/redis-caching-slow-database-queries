@@ -98,7 +98,7 @@ $ node average.js
 
 This file contains logic to demonstrate caching entries from a weather service API.  You will need a free API key of your own to run this demonstration. You can get your own API key by following the [instructions at the Open WeatherMap API](https://openweathermap.org/api) site.  The `getWeather()` function retrieves a JSON object containing real-time meteorological information on a given city. This example uses Oakland as a parameter, but you can use whichever city you like.
 
-Ensure Redis is running, then run the `api.js` file once.  Since there is no cache entry, the codebase will retrieve the data from the Open Weather Map API.
+Ensure Redis is running, then run the `api.js` file once.  Since there is no cache entry, the code will retrieve the data from the Open Weather Map API.
 
 ```bash
 $ node api.js
