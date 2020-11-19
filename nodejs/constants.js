@@ -1,9 +1,15 @@
-module.exports = {
-    'w_api' : '222eba49a41bd7add165f53a342ef0b2',
+import sqlite3 from 'sqlite3'
+
+export default {
+    'endpoint': (city) => `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=`,
+    'key' : process.env.WEATHER_API_KEY,
     'redis' : {
-        'port': process.env.redis_port || 6379,
-        'host': process.env.redis_host || '127.0.0.1'
+        'port': process.env.REDIS_PORT || 6379,
+        'host': process.env.REDIS_HOST || '127.0.0.1'
     },
-    'server_port': process.env.server_port || 3000,
-    'sqlite_database': process.env.sqlite_db || './db/sample.db'
+    'sqlite_database': process.env.SQLITE_DB || {
+        filename: 'db/weather.db',
+        driver: sqlite3.Database
+    },
+    'weather_csv': process.env.WEATHER_CSV || './db/weather.csv'
 }

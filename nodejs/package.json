@@ -7,16 +7,17 @@
     "url": "git+https://github.com/redislabs-training/caching.git"
   },
   "author": "Justin Castilla <justin.castilla@redislabs.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/redislabs-training/caching/issues"
   },
   "homepage": "https://github.com/redislabs-training/caching#readme",
   "dependencies": {
     "axios": "^0.21.0",
-    "express": "^4.17.1",
     "ioredis": "^4.19.2",
+    "sqlite": "^4.0.17",
     "sqlite3": "^5.0.0"
   },
-  "private": true
+  "private": true,
+  "type": "module"
 }
