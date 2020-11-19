@@ -22,7 +22,7 @@ Navigate to the NodeJS folder
 cd nodejs
 ```
 
-Install the required packages from the /nodejs folder:
+Install dependencies:
 ```bash
 npm install 
 ```
@@ -43,7 +43,7 @@ $ docker run -p 6379:6379 --name redis6 -d redis:6
 
 Ensure you have SQLite3 installed.
 
-The following command will unzip and import data to the SQLite `weather` table
+### Unzip and import data to the SQLite `weather` table:
 
 Unzip the weather.csv.zip file
 ```bash
@@ -96,7 +96,7 @@ $ node average.js
 
 ### `api.js`
 
-This file contains logic to demonstrate caching entries from a weather service API.  You will need a free API key of your own to run this demonstration. You can get your own API key by following the [instructions at the Open WeatherMap API](https://openweathermap.org/api) site.  The `getWeather()` function retrieves a JSON object containing real-time meteorological information on a given city. This example uses Oakland as a parameter, but you can use whichever city you like.
+This file contains logic to demonstrate caching entries from a weather service API.  You will need a free API key of your own to run this demonstration. You can get your own API key by following the [instructions at the Open WeatherMap API](https://openweathermap.org/api) site.  The `getWeather()` function retrieves a JSON object containing real-time meteorological information on a given city. This example uses Oakland, but you can use whichever city you like.
 
 Ensure Redis is running, then run the `api.js` file once.  Since there is no cache entry, the code will retrieve the data from the Open Weather Map API.
 

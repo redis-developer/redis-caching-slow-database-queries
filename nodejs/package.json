@@ -7,7 +7,7 @@
     "url": "git+https://github.com/redislabs-training/caching.git"
   },
   "author": "Justin Castilla <justin.castilla@redislabs.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/redislabs-training/caching/issues"
   },

@@ -5,42 +5,42 @@ import Redis from 'ioredis'
 const db = new Database(constants.sqlite_database)
 const redis = new Redis(constants.redis)
 
-const TMAX_average_sql = `SELECT AVG(TMAX) FROM weather`
+const TMAX_average_sql = `SELECT AVG(TMAX) 
+                          FROM weather
+                          WHERE Date
+                          BETWEEN (?) AND (?)`
 
 /* Returns average of maximum recorded daily temperature from the database. */
-const getAverage = async () => {
+const getAverage = async (startDate, endDate) => {
+
+  /* Dynamically generate the cache key */
+  const cacheKey = `weather:Oakland:${startDate}:${endDate}:average`
 
   /* Check Redis for cached entry first */
-  // TODO: include key Oakland, time frame start, end, math
-  return redis.get('weather:average')
-    .then(entry => JSON.parse(entry))
-    .then( entry => {
+  let cacheEntry =  await redis.get(cacheKey);
+  /* If Redis returns a cache hit, */
+  if(cacheEntry) {
+    cacheEntry = JSON.parse(cacheEntry)
+    /* return the entry */
+    return {...cacheEntry, 'source' : 'cache'}
+  }
 
-    /* If Redis returns a cache hit, */
-    if(entry) {
-      /* return the entry */
-      return {...entry, 'source' : 'cache'}
-    }
+  /* If Redis returns a chache miss, fetch the entry from the database */
+  await db.open()
+  let dbEntry = await db.get(TMAX_average_sql, [startDate, endDate])
 
-    /* If Redis returns a chache miss, fetch the entry from the database */
-    db.open()
-    return db.get(TMAX_average_sql, [])
-      .then(db_entry => {
-      
-      /* Add the entry we pulled from the database to the cache */
-      redis.set('weather:average', JSON.stringify(db_entry))
+  /* Add the entry we pulled from the database to the cache */
+  redis.set(cacheKey, JSON.stringify(dbEntry))
 
-      /* Return the database entry */
-      return {...db_entry, 'source' : 'database'}
-    })
-   })
+    /* Return the database entry */
+  return {...dbEntry, 'source' : 'database'}
+  
 }
 
 const t0 = new Date().getTime()
-getAverage().then( average => {
-  const t1 = new Date().getTime()
-  average.responseTime = `${t1-t0}ms`
-  console.log(average)
-  redis.quit()
-  process.exit()
-})
+const average = await getAverage("2010-01-01", "2020-11-01")
+const t1 = new Date().getTime()
+average.responseTime = `${t1-t0}ms`
+console.log(average)
+redis.quit()
+process.exit()
