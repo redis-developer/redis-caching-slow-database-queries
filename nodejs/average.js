@@ -18,9 +18,11 @@ const getAverage = async (startDate, endDate) => {
 
   /* Check Redis for cached entry first */
   let cacheEntry =  await redis.get(cacheKey);
+
   /* If Redis returns a cache hit, */
   if(cacheEntry) {
     cacheEntry = JSON.parse(cacheEntry)
+
     /* return the entry */
     return {...cacheEntry, 'source' : 'cache'}
   }
