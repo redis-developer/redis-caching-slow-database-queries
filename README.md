@@ -17,7 +17,7 @@ Clone the repository to your computer:
 git clone https://github.com/redislabs-training/caching
 ```
 
-Navigate to the NodeJS folder
+Navigate to the NodeJS folder:
 ```bash
 cd nodejs
 ```
@@ -45,7 +45,7 @@ Ensure you have SQLite3 installed.
 
 ### Unzip and import data to the SQLite `weather` table:
 
-Unzip the weather.csv.zip file
+Unzip the weather.csv.zip file:
 ```bash
 $ gzip -d db/weather.csv.zip
 ```
@@ -70,7 +70,7 @@ You are now prepared to run the two example files.
 
 This file contains two functions to demonstrate caching entries from a database.  `getAverage()` retrieves the average daily maximum temperature recorded from numerous weather stations within Oakland, California, USA recorded since 2010. Timing is collected during the function execution and added to the returned JSON object.
 
-Ensure Redis is running, then run the `averages.js` file once.  Since there is no cache entry, the codebase will retrieve the data from the database.
+Ensure Redis is running, then run the `averages.js` file once.  Since there is no cache entry, the function will retrieve the data from the database.
 
 ```bash
 $ node average.js
