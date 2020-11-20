@@ -27,9 +27,9 @@ const getAverage = async (startDate, endDate) => {
     return {...cacheEntry, 'source' : 'cache'}
   }
 
-  /* If Redis returns a chache miss, fetch the entry from the database */
+  /* If Redis returns a cache miss, fetch the entry from the database */
   await db.open()
-  let dbEntry = await db.get(TMAX_average_sql, [startDate, endDate])
+  const dbEntry = await db.get(TMAX_average_sql, [startDate, endDate])
 
   /* Add the entry we pulled from the database to the cache */
   redis.set(cacheKey, JSON.stringify(dbEntry))
