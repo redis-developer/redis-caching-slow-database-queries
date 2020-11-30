@@ -5,12 +5,12 @@ import Redis from 'ioredis'
 const db = new Database(constants.sqlite_database)
 const redis = new Redis(constants.redis)
 
-const TMAX_average_sql = `SELECT AVG(TMAX) 
+const TAVG_average_sql = `SELECT AVG(TAVG)
                           FROM weather
                           WHERE Date
                           BETWEEN (?) AND (?)`
 
-/* Returns average of maximum recorded daily temperature from the database. */
+/* Returns average of recorded daily temperature from the database. */
 const getAverage = async (startDate, endDate) => {
 
   /* Dynamically generate the cache key */
@@ -29,7 +29,7 @@ const getAverage = async (startDate, endDate) => {
 
   /* If Redis returns a cache miss, fetch the entry from the database */
   await db.open()
-  const dbEntry = await db.get(TMAX_average_sql, [startDate, endDate])
+  const dbEntry = await db.get(TAVG_average_sql, [startDate, endDate])
 
   /* Add the entry we pulled from the database to the cache */
   redis.set(cacheKey, JSON.stringify(dbEntry))

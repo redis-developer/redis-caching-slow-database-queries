@@ -50,13 +50,13 @@ Unzip the weather.csv.zip file:
 $ gzip -d db/weather.csv.zip
 ```
 
-Run the Sqlite3 command line interface to import the `weather.csv` file and set empty `TMAX` values to `NULL`:
+Run the Sqlite3 command line interface to import the `weather.csv` file and set empty `TAVG` values to `NULL`:
 ```bash
 $ sqlite3
 sqlite> .open db/weather.db
 sqlite> .mode csv
 sqlite> .import db/weather.csv weather
-sqlite> UPDATE weather SET TMAX = NULLIF(TMAX, '');
+sqlite> UPDATE weather SET TAVG = NULLIF(TAVG, '');
 sqlite> .quit
 ```
 
@@ -68,14 +68,14 @@ You are now prepared to run the two example files.
 
 ### `average.js`
 
-This file contains two functions to demonstrate caching entries from a database.  `getAverage()` retrieves the average daily maximum temperature recorded from numerous weather stations within Oakland, California, USA recorded since 2010. Timing is collected during the function execution and added to the returned JSON object.
+This file contains two functions to demonstrate caching entries from a database.  `getAverage()` retrieves the average daily average temperature recorded from numerous weather stations within Oakland, California, USA recorded since 2010. Timing is collected during the function execution and added to the returned JSON object.
 
 Ensure Redis is running, then run the `averages.js` file once.  Since there is no cache entry, the function will retrieve the data from the database.
 
 ```bash
 $ node average.js
 {
-  'AVG(TMAX)': 66.92141005472713,
+  'AVG(TAVG)': 66.92141005472713,
   source: 'database',
   responseTime: '23ms'
 }
@@ -86,7 +86,7 @@ The code will have placed a copy of the entry in the Redis cache, so the next fu
 ```bash
 $ node average.js
 {
-  'AVG(TMAX)': 66.92141005472713,
+  'AVG(TAVG)': 66.92141005472713,
   source: 'cache',
   responseTime: '10ms'
 }
