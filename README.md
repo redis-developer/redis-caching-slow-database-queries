@@ -75,7 +75,7 @@ Ensure Redis is running, then run the `averages.js` file once.  Since there is n
 ```bash
 $ node average.js
 {
-  'AVG(TAVG)': 66.92141005472713,
+  'AVG(TAVG)': 57.98858175936058,
   source: 'database',
   responseTime: '23ms'
 }
@@ -86,7 +86,7 @@ The code will have placed a copy of the entry in the Redis cache, so the next fu
 ```bash
 $ node average.js
 {
-  'AVG(TAVG)': 66.92141005472713,
+  'AVG(TAVG)': 57.98858175936058,
   source: 'cache',
   responseTime: '10ms'
 }
