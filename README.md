@@ -45,6 +45,8 @@ Ensure you have SQLite3 installed.
 
 ### Unzip and import data to the SQLite `weather` table:
 
+This CSV file was acquired from the National Centers for Environmental Information (NOAA) can be found [https://www.ncdc.noaa.gov/cdo-web/datasets#GHCND](here).
+
 Unzip the weather.csv.zip file:
 ```bash
 $ gzip -d db/weather.csv.zip
@@ -68,7 +70,7 @@ You are now prepared to run the two example files.
 
 ### `average.js`
 
-This file contains two functions to demonstrate caching entries from a database.  `getAverage()` retrieves the average daily average temperature recorded from numerous weather stations within Oakland, California, USA recorded since 2010. Timing is collected during the function execution and added to the returned JSON object.
+This file contains two functions to demonstrate caching entries from a database.  `getAverage()` retrieves the average daily average temperature recorded from numerous weather stations within Iceland recorded since 2010. Timing is collected during the function execution and added to the returned JSON object.
 
 Ensure Redis is running, then run the `averages.js` file once.  Since there is no cache entry, the function will retrieve the data from the database.
 
@@ -96,7 +98,7 @@ $ node average.js
 
 ### `api.js`
 
-This file contains logic to demonstrate caching entries from a weather service API.  You will need a free API key of your own to run this demonstration. You can get your own API key by following the [instructions at the Open WeatherMap API](https://openweathermap.org/api) site.  The `getWeather()` function retrieves a JSON object containing real-time meteorological information on a given city. This example uses Oakland, but you can use whichever city you like.
+This file contains logic to demonstrate caching entries from a weather service API.  You will need a free API key of your own to run this demonstration. You can get your own API key by following the [instructions at the Open WeatherMap API](https://openweathermap.org/api) site.  The `getWeather()` function retrieves a JSON object containing real-time meteorological information on a given city. This example uses Iceland, but you can use whichever city or country you like.
 
 Ensure Redis is running, then run the `api.js` file once.  Since there is no cache entry, the code will retrieve the data from the Open Weather Map API.
 

@@ -14,7 +14,7 @@ const TAVG_average_sql = `SELECT AVG(TAVG)
 const getAverage = async (startDate, endDate) => {
 
   /* Dynamically generate the cache key */
-  const cacheKey = `weather:Oakland:${startDate}:${endDate}:average`
+  const cacheKey = `weather:Iceland:${startDate}:${endDate}:average`
 
   /* Check Redis for cached entry first */
   let cacheEntry =  await redis.get(cacheKey);
@@ -32,7 +32,7 @@ const getAverage = async (startDate, endDate) => {
   const dbEntry = await db.get(TAVG_average_sql, [startDate, endDate])
 
   /* Add the entry we pulled from the database to the cache */
-  redis.set(cacheKey, JSON.stringify(dbEntry))
+  redis.set(cacheKey, JSON.stringify(dbEntry), 'EX', 60*60*24)
 
     /* Return the database entry */
   return {...dbEntry, 'source' : 'database'}
