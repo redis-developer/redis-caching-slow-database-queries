@@ -1,3 +1,5 @@
+.vscode/settings.json
+nodejs/dump.rdb
 node_modules
 package-lock.json
 .DS_STORE

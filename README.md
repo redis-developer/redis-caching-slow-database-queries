@@ -7,7 +7,6 @@ Simple caching examples with Redis!
 - SQLite3
 - Redis
 - ioredis
-- [Open Weather Map API Key ](https://openweathermap.org/api)
 
 ## Installing this application
 
@@ -25,11 +24,6 @@ cd nodejs
 Install dependencies:
 ```bash
 npm install 
-```
-
-Add the Open Weather Map API Key to your Environment Variables:
-```bash
-export WEATHER_API_KEY=<your api key>
 ```
 
 ## Database Preparation
@@ -57,12 +51,12 @@ Run the Sqlite3 command line interface to import the `weather.csv` file and set 
 $ sqlite3
 sqlite> .open db/weather.db
 sqlite> .mode csv
-sqlite> .import db/weather.csv weather
-sqlite> UPDATE weather SET TAVG = NULLIF(TAVG, '');
+sqlite> .import db/weather.csv weather_measurements
+sqlite> UPDATE weather SET tavg = NULLIF(tavg, '');
 sqlite> .quit
 ```
 
-You are now prepared to run the two example files.
+You are now prepared to run the example file.
 <br/>
 <br/>
 
@@ -77,9 +71,9 @@ Ensure Redis is running, then run the `averages.js` file once.  Since there is n
 ```bash
 $ node average.js
 {
-  'AVG(TAVG)': 57.98858175936058,
+  'AVG(TAVG)': 41.85745350929814,
   source: 'database',
-  responseTime: '23ms'
+  responseTime: '1735ms'
 }
 ```
 
@@ -88,54 +82,9 @@ The code will have placed a copy of the entry in the Redis cache, so the next fu
 ```bash
 $ node average.js
 {
-  'AVG(TAVG)': 57.98858175936058,
+  'AVG(TAVG)': 41.85745350929814,
   source: 'cache',
-  responseTime: '10ms'
+  responseTime: '2ms'
 }
 ```
 
----
-
-### `api.js`
-
-This file contains logic to demonstrate caching entries from a weather service API.  You will need a free API key of your own to run this demonstration. You can get your own API key by following the [instructions at the Open WeatherMap API](https://openweathermap.org/api) site.  The `getWeather()` function retrieves a JSON object containing real-time meteorological information on a given city. This example uses Iceland, but you can use whichever city or country you like.
-
-Ensure Redis is running, then run the `api.js` file once.  Since there is no cache entry, the code will retrieve the data from the Open Weather Map API.
-
-```bash
-$ node api.js
-{
-  coord: { lon: -83.4, lat: 42.67 },
-  weather: [
-    {
-      id: 803,
-      main: 'Clouds',
-      description: 'broken clouds',
-      icon: '04d'
-    }
-  ],
-  ...
-  source: 'API',
-  responseTime: '180ms'
-}
-```
-
-The code will have placed a copy of the entry in the Redis cache, so the next function call will return data from the cache. Note that the cached entry has a `TTL` (Time To Live) of one hour. Weather can change frequently, so an hour should provide a reasonable approximation of the current conditions. After an hour, the cache entry will be removed automatically, and a new cache entry will need to be stored. This ensures fresh, relevant data.
-
-```bash
-$ node api.js
-{
-  coord: { lon: -83.4, lat: 42.67 },
-  weather: [
-    {
-      id: 803,
-      main: 'Clouds',
-      description: 'broken clouds',
-      icon: '04d'
-    }
-  ],
-  ...
-  source: 'cache',
-  responseTime: '9ms'
-}
-```
