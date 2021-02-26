@@ -52,7 +52,7 @@ $ sqlite3
 sqlite> .open db/weather.db
 sqlite> .mode csv
 sqlite> .import db/weather.csv weather_measurements
-sqlite> UPDATE weather SET tavg = NULLIF(tavg, '');
+sqlite> UPDATE weather_measurements SET tavg = NULLIF(tavg, '');
 sqlite> .quit
 ```
 
