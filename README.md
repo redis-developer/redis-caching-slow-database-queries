@@ -13,7 +13,7 @@ Simple caching examples with Redis!
 Clone the repository to your computer:
 
 ```bash
-git clone https://github.com/redislabs-training/caching
+https://github.com/redis-developer/redis-caching-slow-database-queries
 ```
 
 Navigate to the NodeJS folder:
