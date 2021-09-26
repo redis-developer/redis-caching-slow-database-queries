@@ -13,17 +13,17 @@ Simple caching examples with Redis!
 Clone the repository to your computer:
 
 ```bash
-https://github.com/redis-developer/redis-caching-slow-database-queries
+$ git clone https://github.com/redis-developer/redis-caching-slow-database-queries
 ```
 
 Navigate to the NodeJS folder:
 ```bash
-cd nodejs
+$ cd nodejs
 ```
 
 Install dependencies:
 ```bash
-npm install 
+$ npm install 
 ```
 
 ## Database Preparation
