@@ -9,5 +9,5 @@ export default {
         filename: 'db/weather.db',
         driver: sqlite3.Database
     },
-    'weather_csv': process.env.WEATHER_CSV || './db/weather .csv'
+    'weather_csv': process.env.WEATHER_CSV || './db/weather.csv'
 }
