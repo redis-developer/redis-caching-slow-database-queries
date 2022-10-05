@@ -4,19 +4,22 @@
   "description": "A simple caching example using SQLite and Redis",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/redislabs-training/caching.git"
+    "url": "git+https://github.com/redis-developer/redis-caching-slow-database-queries.git"
   },
-  "author": "Justin Castilla <justin.castilla@redislabs.com>",
+  "author": "Justin Castilla <justin.castilla@redis.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/redislabs-training/caching/issues"
+    "url": "https://github.com/redis-developer/redis-caching-slow-database-queries/issues"
   },
-  "homepage": "https://github.com/redislabs-training/caching#readme",
+  "homepage": "https://github.com/redis-developer/redis-caching-slow-database-queries#readme",
   "dependencies": {
     "axios": "^0.21.0",
     "ioredis": "^4.19.2",
     "sqlite": "^4.0.17",
     "sqlite3": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=14.8"
   },
   "private": true,
   "type": "module"

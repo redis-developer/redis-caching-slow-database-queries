@@ -1,27 +1,30 @@
 # Caching
-Simple caching examples with Redis!
+
+Simple caching examples with Redis and Node.js!
 
 ## Prerequisites
+
 - Node.js
 - SQLite
 - SQLite3
 - Redis
-- ioredis
 
 ## Installing this application
 
 Clone the repository to your computer:
 
 ```bash
-$ git clone https://github.com/redis-developer/redis-caching-slow-database-queries
+$ git clone https://github.com/redis-developer/redis-caching-slow-database-queries.git
 ```
 
 Navigate to the NodeJS folder:
+
 ```bash
 $ cd nodejs
 ```
 
 Install dependencies:
+
 ```bash
 $ npm install 
 ```
@@ -31,6 +34,7 @@ $ npm install
 Ensure you have Redis installed and running.
 
 For Docker:
+
 ```bash
 $ docker run -p 6379:6379 --name redis6 -d redis:6 
 ```
@@ -47,6 +51,7 @@ $ gzip -d db/weather.csv.zip
 ```
 
 Run the Sqlite3 command line interface to import the `weather.csv` file and set empty `TAVG` values to `NULL`:
+
 ```bash
 $ sqlite3
 sqlite> .open db/weather.db
@@ -57,8 +62,6 @@ sqlite> .quit
 ```
 
 You are now prepared to run the example file.
-<br/>
-<br/>
 
 ## Running the examples
 
