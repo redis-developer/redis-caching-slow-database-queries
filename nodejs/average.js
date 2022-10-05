@@ -38,7 +38,7 @@ const getAverage = async (location, startDate, endDate) => {
 }
 
 const t0 = new Date().getTime()
-const average = await getAverage("Iceland", "2010-01-01", "2020-11-01")
+const average = await getAverage('Iceland', '2010-01-01', '2020-11-01')
 const t1 = new Date().getTime()
 average.responseTime = `${t1-t0}ms`
 console.log(average)
