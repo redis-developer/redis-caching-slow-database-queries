@@ -1,6 +1,8 @@
 .vscode/settings.json
 nodejs/dump.rdb
-node_modules
-package-lock.json
+node_modules/
 .DS_STORE
 *.db
+*.tmp
+*.swp
+*.bak
