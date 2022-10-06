@@ -43,9 +43,8 @@ Ensure you have SQLite3 installed.
 
 ### Unzip and import data to the SQLite `weather` table:
 
-This CSV file was acquired from the National Centers for Environmental Information (NOAA) can be found [https://www.ncdc.noaa.gov/cdo-web/datasets#GHCND](here).
+Unzip the weather.csv.zip file that is in the `db` folder:
 
-Unzip the weather.csv.zip file:
 ```bash
 $ gzip -d db/weather.csv.zip
 ```
@@ -62,6 +61,8 @@ sqlite> .quit
 ```
 
 You are now prepared to run the example file.
+
+This CSV file was acquired from the National Centers for Environmental Information (NOAA) whose original dataset can be found [https://www.ncdc.noaa.gov/cdo-web/datasets#GHCND](here).
 
 ## Running the examples
 
