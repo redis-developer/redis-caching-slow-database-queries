@@ -3,7 +3,7 @@ import { Database } from 'sqlite';
 import { createClient } from 'redis';
 
 const db = new Database(constants.sqlite_database);
-const client = createClient();
+const client = createClient({ url: constants.redis });
 
 const tavg_average_sql = `SELECT AVG(tavg)
                           FROM weather_measurements
