@@ -14,7 +14,7 @@
   "homepage": "https://github.com/redis-developer/redis-caching-slow-database-queries#readme",
   "dependencies": {
     "axios": "^0.21.0",
-    "ioredis": "^4.19.2",
+    "redis": "^4.3.1",
     "sqlite": "^4.0.17",
     "sqlite3": "^5.0.0"
   },
