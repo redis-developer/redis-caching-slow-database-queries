@@ -8,6 +8,8 @@ Simple caching examples with Redis and Node.js!
 - SQLite
 - SQLite3
 - Redis
+- Docker (Optional)
+- A Redis Stack database, or Redis with the RediSearch and RedisJSON modules installed. We've provided a docker-compose.yml for this. You can also sign up for a free 30Mb database with Redis Enterprise Cloud - be sure to check the Redis Stack option when creating your cloud database.
 
 ## Installing this application
 
@@ -33,10 +35,15 @@ $ npm install
 
 Ensure you have Redis installed and running.
 
-For Docker:
+Start and run Redis in a Docker container:
 
 ```bash
-$ docker run -p 6379:6379 --name redis6 -d redis:6 
+$ docker-compose up -d
+```
+
+You can also run redis-cli in the container
+```bash
+$  docker exec -it redis-caching-slow-database-queries redis-cli
 ```
 
 Ensure you have SQLite3 installed.
