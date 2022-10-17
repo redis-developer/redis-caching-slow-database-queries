@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  redis:
+    container_name: redis-caching-slow-database-queries
+    image: "redis/redis-stack:latest"
+    ports:
+      - 6379:6379
+      - 8001:8001
+    deploy:
+      restart_policy:
+        condition: on-failure

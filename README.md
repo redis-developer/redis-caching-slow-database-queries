@@ -8,6 +8,7 @@ Simple caching examples with Redis and Node.js!
 - SQLite
 - SQLite3
 - Redis
+- Docker
 
 ## Installing this application
 
@@ -33,13 +34,29 @@ $ npm install
 
 Ensure you have Redis installed and running.
 
-For Docker:
+You can run it with Docker:
 
 ```bash
-$ docker run -p 6379:6379 --name redis6 -d redis:6 
+$ docker-compose up -d
 ```
 
-Ensure you have SQLite3 installed.
+You can also run redis-cli in the container
+```bash
+$  docker exec -it redis-caching-slow-database-queries redis-cli
+```
+> NOTE: If you're using Redis Enterprise Cloud, you'll need the hostname, port number, and password for your database.  Use these to set the `REDIS_OM_URL` environment variable like this:
+
+```bash
+$ export REDIS_OM_URL=redis://default:<password>@<host>:<port>
+```
+
+(**This step is not required when working with Docker as the Docker container** runs Redis on `localhost` port `6379` with no password, which is the default connection that Redis OM uses.)
+
+For example if your Redis Enterprise Cloud database is at port `9139` on host `enterprise.redis.com` and your password is `5uper53cret` then you'd set `REDIS_OM_URL` as follows:
+
+> You can also use redis-stack on your browser
+
+> Ensure you have SQLite3 installed.
 
 ### Unzip and import data to the SQLite `weather` table:
 
@@ -91,4 +108,9 @@ $ node average.js
   responseTime: '2ms'
 }
 ```
+## Shutting Down Redis (Docker)
 
+If you're using Docker, and want to shut down the Redis container when you are finished with the application just use:
+```bash
+$ docker-compose down
+```
